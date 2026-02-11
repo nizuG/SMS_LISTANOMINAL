@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/menu.css" />
+    <link rel="stylesheet" href="/assets/css/home.css" />
+    <title>Lista Nominal Visualizador</title>
+  </head>
+  <body id="topo">
+    <div id="menu-container"></div>
+
+    <div id="main-content">
+  
+      <h1>Indicador de Qualidade</h1>
+      <h2>Lista nominal</h2>
+
+      <!-- Selecionar competência e indicador em vez de upload -->
+      <div id="filtros-selecionar">
+        <label for="select-competencia">Competência:</label>
+        <select id="select-competencia">
+          <option value="">Selecione</option>
+        </select>
+
+        <label for="select-indicador">Indicador:</label>
+        <select id="select-indicador">
+          <option value="">Selecione</option>
+        </select>
+
+        <button id="btn-processar">Processar</button>
+      </div>
+
+      <div id="filtro-equipe" style="display: none">
+        <label for="select-equipe">Equipe:</label>
+        <select id="select-equipe">
+          <option value="">Todas</option>
+        </select>
+      </div>
+
+      <p id="info"></p>
+      <div id="indicadores"></div>
+      <p id="dicionario"></p>
+
+      <div id="filtro" style="display: none">
+        <label for="filtro-texto">Buscar:</label>
+        <input type="text" id="filtro-texto" placeholder="CPF ou CNS" />
+        <label for="filtro-indicador">Filtrar por indicador:</label>
+        <select id="filtro-indicador">
+          <option value="">Todos</option>
+        </select>
+
+        <label for="filtro-status">Status:</label>
+        <select id="filtro-status">
+          <option value="todos">Todos</option>
+          <option value="vazio">Não atingiu</option>
+          <option value="atingiu">Atingiu</option>
+        </select>
+      </div>
+
+      <pre id="tabela" style="display: none"></pre>
+    </div>
+
+    <!-- Bibliotecas -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="/assets/menu/menu.js"></script>
+
+    <!-- Scripts -->
+    <script src="/assets/scripts/selecionar.js"></script>
+    <script src="/assets/scripts/script.js"></script>
+  </body>
+  <script src="/assets/scripts/script-csv.js"></script>
+  <script src="/assets/scripts/script-xlsx.js"></script>
+</html>

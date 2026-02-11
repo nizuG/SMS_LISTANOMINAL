@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listar Arquivos</title>
+    <link rel="stylesheet" href="/assets/css/menu.css" />
+    <link rel="stylesheet" href="/assets/css/home.css" />
+  </head>
+  <body>
+    <div id="menu-container"></div>
+
+    <div id="main-content">
+      <h1>Competências e Indicadores Enviados</h1>
+      <table id="tabela-arquivos" border="1">
+        <thead>
+          <tr>
+            <th>Competência</th>
+            <th>Indicador</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+    <script src="/assets/menu/menu.js"></script>
+    <!-- menu -->
+    <script>
+      async function carregarArquivos() {
+        const res = await fetch("http://localhost:3000/listar");
+        const arquivos = await res.json();
+
+        const tbody = document.querySelector("#tabela-arquivos tbody");
+        tbody.innerHTML = "";
+
+        const jaMostrados = new Set();
+
+        arquivos.forEach((a) => {
+          const key = `${a.competencia}||${a.indicador}`;
+          if (!jaMostrados.has(key)) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `<td>${a.competencia}</td><td>${a.indicador}</td>`;
+            tbody.appendChild(tr);
+            jaMostrados.add(key);
+          }
+        });
+      }
+
+      carregarArquivos();
+    </script>
+  </body>
+</html>
